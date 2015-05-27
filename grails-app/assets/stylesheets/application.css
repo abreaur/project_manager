@@ -1,0 +1,43 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require main
+*= require mobile
+*= require_self
+*/
+
+input[type="submit"] {
+    min-width: 115px;
+    background-color: #E1F2B6;
+}
+
+input[type="submit"]:hover {
+    background-color: #48802c;
+    color: white;
+}
+
+input[type="text"] {
+    min-width: 219px;
+}
+
+.wideSelector {
+    min-width: 233px;
+}
+
+.suppressHover:hover {
+    background-color: white;
+}
+
+.label {
+    text-align: right;
+}
+
+.numericCell {
+    text-align: right;
+}
