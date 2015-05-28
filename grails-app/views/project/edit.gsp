@@ -15,17 +15,17 @@
     <form>
         <table>
             <thead>
-                <th>${project.id != null ? "Edit project" : "Add project"}</th>
+                <th>${project?.id != null ? "Edit project" : "Add project"}</th>
                 <th></th>
             </thead>
             <tbody>
                 <tr>
                     <td class="label">Project name:</td>
-                    <td><g:textField name="name" value="${project.name}"></g:textField></td>
+                    <td><g:textField name="name" value="${project?.name}"></g:textField></td>
                 </tr>
                 <tr>
                     <td class="label">Project code:</td>
-                    <td><g:textField name="code" value="${project.code}"></g:textField></td>
+                    <td><g:textField name="code" value="${project?.code}"></g:textField></td>
                 </tr>
                 <tr>
                     <td class="label">Tech lead:</td>
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td class="label">Delivery date:</td>
-                    <td><g:datePicker name="deliveryDate" precision="day" value="${project.deliveryDate}"></g:datePicker></td>
+                    <td><g:datePicker name="deliveryDate" precision="day" value="${project?.deliveryDate}"></g:datePicker></td>
                 </tr>
                 <tr>
                     <td class="label">Status:</td>
@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <td class="label">Priority:</td>
-                    <td><g:textField name="priority" value="${project.priority}" class="numericCell"></g:textField></td>
+                    <td><g:textField name="priority" value="${project?.priority}" class="numericCell"></g:textField></td>
                 </tr>
                 <tr class="suppressHover">
                     <td></td>

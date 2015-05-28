@@ -21,7 +21,7 @@
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><h1>Project Management System</h1></a></div>
 
         <g:if test="${flash.error}">
-            <div class="alert alert-error" style="display: block">${flash.error}</div>
+            <div class="errors" style="display: block">${flash.error}</div>
         </g:if>
         <g:if test="${flash.message}">
             <div class="message" style="display: block">${flash.message}</div>

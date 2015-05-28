@@ -22,22 +22,59 @@ class ProjectController {
     def save() {
         def newProject = params.long('id') != null ? Project.get(params.long('id')) : new Project()
 
-        newProject.setName(params.name)
-        newProject.setCode(params.code)
-        newProject.setTechLead(Person.get(params.long('techLead.id')))
-        newProject.setProjectManager(Person.get(params.long('projectManager.id')))
-        newProject.setDeliveryDate(new Date().parse("d/M/yyyy", params.deliveryDate_day + "/" + params.deliveryDate_month + "/" + params.deliveryDate_year).toTimestamp())
-        newProject.setStatus(Status.get(params.long('status.id')))
-        newProject.setPriority(params.int("priority"))
+        def validationErrors = ""
 
-        if (newProject.save(failOnError: true, flush: true)) {
+        if (params.name != null && !params.name.isEmpty()){
+            newProject.name = params.name
+        } else {
+            validationErrors += "Project name cannot be empty! "
+        }
+
+        if (params.code != null && !params.code.isEmpty()){
+            newProject.code = params.code
+        } else {
+            validationErrors += "Project code cannot be empty! "
+        }
+
+        if (params.long('techLead.id') != null){
+            newProject.techLead = Person.get(params.long('techLead.id'))
+        } else {
+            validationErrors += "Project tech lead cannot be empty! "
+        }
+
+        if (params.long('projectManager.id') != null){
+            newProject.projectManager = Person.get(params.long('projectManager.id'))
+        } else {
+            validationErrors += "Project manager cannot be empty\n"
+        }
+
+        newProject.deliveryDate = new Date().parse("d/M/yyyy", params.deliveryDate_day + "/" + params.deliveryDate_month + "/" + params.deliveryDate_year).toTimestamp()
+
+        if (params.status.id != null){
+            newProject.status = Status.get(params.long('status.id'))
+        } else {
+            validationErrors += "Project status cannot be empty! "
+        }
+
+        if (params.int("priority") != null){
+            newProject.priority = params.int("priority")
+        } else {
+            validationErrors += "Project priority cannot be empty! "
+        }
+
+        if (validationErrors.size() == 0 && newProject.save(failOnError: true, flush: true)) {
             // if ok, render the project list with success message
             flash.message = "Successfully saved project: " + newProject.name
             redirect(action: index())
         } else {
             // on failure, render failure message on the same view
-            flash.error = "Error saving project " + newProject.name + ": " + newProject.errors
-            redirect(action: index())
+            flash.error = "Error saving project " + newProject.name + ": " + validationErrors
+            if (newProject.id != null) {
+                redirect(action: 'edit', params: [id: newProject.id])
+            } else {
+                redirect(action: 'add')
+            }
+
         }
     }
 

@@ -20,12 +20,12 @@ class BootStrap {
         Person greenleaf = new Person(firstName: "Ben", lastName: "Greenleaf").save()
         Person max = new Person(firstName: "Max", lastName: "Hackerson").save()
 
-        new Project(name: "BNP Paribas integration project", code: "1234", deliveryDate: new Date().parse("d/M/yyyy", "01/04/2016"), priority: 2,
-                techLead: max, projectManager: smith, status: interaction).save(failOnError: true)
-        new Project(name: "Gantt chart project manangement plugin", code: "1235", deliveryDate: new Date().parse("d/M/yyyy", "27/8/2015"), priority: 3,
-                techLead: greenleaf, projectManager: doe, status: development).save(failOnError: true)
-        new Project(name: "Business inteligence module", code: "2234", deliveryDate: new Date().parse("d/M/yyyy", "2/6/2015"), priority: 1,
-                techLead: max, projectManager: doe, status: qa).save(failOnError: true)
+        new Project(name: "BNP Paribas integration project", code: "1234", deliveryDate: new Date().parse("d/M/yyyy", "01/04/2016").toTimestamp(),
+                priority: 2, techLead: max, projectManager: smith, status: interaction).save(failOnError: true)
+        new Project(name: "Gantt chart project manangement plugin", code: "1235", deliveryDate: new Date().parse("d/M/yyyy", "27/8/2015").toTimestamp(),
+                priority: 3, techLead: greenleaf, projectManager: doe, status: development).save(failOnError: true)
+        new Project(name: "Business inteligence module", code: "2234", deliveryDate: new Date().parse("d/M/yyyy", "2/6/2015").toTimestamp(),
+                priority: 1, techLead: max, projectManager: doe, status: qa).save(failOnError: true)
     }
     def destroy = {
     }
